@@ -1,0 +1,29 @@
+{
+  "name": "lazerify",
+  "version": "1.0.0",
+  "description": "## Przygotowanie",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "server": "webpack-dev-server --hot",
+    "all": "webpack && node_modules/.bin/webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/majkamajka/hamborgir.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/majkamajka/hamborgir/issues"
+  },
+  "homepage": "https://github.com/majkamajka/hamborgir#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.6.1"
+  }
+}
