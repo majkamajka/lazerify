@@ -73,6 +73,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_style_scss__);
 
 
+$(function() {
+
+  const imageDiv = $("#image");
+
+
+  const style = getComputedStyle(document.body);
+  let imgPath = style.getPropertyValue('--baseImg').replace("/'/", "");
+
+  console.log(imgPath);
+
+  $(imageDiv).css("backgroundImage", `url(${eval(imgPath)})`); // later, i'll think about how to get rid of eval
+  console.log(imageDiv);
+
+  // function handleUpdate() {
+  //   const suffix = this.dataset.sizing || '';
+  //   document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  // }
+
+});
+
 
 /***/ }),
 /* 1 */
@@ -114,7 +134,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "p {\n  color: red;\n  font-size: 40px; }\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n:root {\n  --baseImg: 'images/black-cat.jpg';\n  --size: 50px; }\n\n#image {\n  font-size: var(--size);\n  display: inline-block;\n  border: 2px solid blue;\n  height: 600px;\n  width: 800px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  position: relative; }\n\n.lazer {\n  display: inline-block;\n  background-color: #ffa3ff;\n  height: 10px;\n  width: 400px;\n  position: absolute;\n  transform-origin: 0 50%;\n  border-radius: 100%;\n  box-shadow: 0 0 8px 4px #ff80ff, 0 0 12px 11px magenta;\n  opacity: 0.8; }\n  .lazer.one {\n    top: 180px;\n    left: 520px;\n    transform: rotate(125deg); }\n  .lazer.two {\n    top: 180px;\n    left: 450px;\n    transform: rotate(120deg); }\n\n#lazer-props {\n  display: inline-block;\n  vertical-align: top; }\n", ""]);
 
 // exports
 

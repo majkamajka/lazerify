@@ -1,4 +1,52 @@
-p {
-  color: green;
-  font-size: 40px;
+* {
+  padding: 0;
+  margin: 0;
+  //border: 2px dotted magenta;
+}
+
+// variables:
+:root {
+  --baseImg: 'images/black-cat.jpg';
+  --size: 50px;
+}
+
+#image {
+  font-size: var(--size);
+  display: inline-block;
+  border: 2px solid blue;
+  height: 600px;
+  width: 800px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+}
+
+.lazer {
+  display: inline-block;
+  background-color: lighten(magenta, 32%);
+  height: 10px;
+  width: 400px;
+  position: absolute;
+  transform-origin: 0 50%;
+  border-radius: 100%;
+  box-shadow: 0 0 8px 4px lighten(magenta, 25%), 0 0 12px 11px magenta;
+  opacity: 0.8;
+
+  &.one {
+    top: 180px;
+    left: 520px;
+    transform: rotate(125deg);
+  }
+
+  &.two {
+    top: 180px;
+    left: 450px;
+    transform: rotate(120deg);
+  }
+}
+
+
+#lazer-props {
+  display: inline-block;
+  vertical-align: top;
 }
