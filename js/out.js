@@ -75,6 +75,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 $(function() {
 
+//variables
+
   const style = getComputedStyle(document.body);
   let imgPath = style.getPropertyValue('--baseImg').replace("/'/", "");
 
@@ -84,8 +86,10 @@ $(function() {
   let warningMsg = $(".warning");
   let startingPoints = $(".target");
 
-  const inputs = document.querySelectorAll('.controls input');
-  
+  const inputs = document.querySelectorAll("#lazer-props input");
+
+
+// everything else
 
   $(imageDiv).css("backgroundImage", `url(${eval(imgPath)})`); // later, i'll think about how to get rid of eval
 
@@ -107,12 +111,12 @@ $(function() {
   });
 
 
+  function handleUpdate() {
+    const suffix = this.dataset.sizing || '';
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  };
 
-
-  // function handleUpdate() {
-  //   const suffix = this.dataset.sizing || '';
-  //   document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-  // }
+  inputs.forEach(input => input.addEventListener('change', handleUpdate));
 
 });
 
