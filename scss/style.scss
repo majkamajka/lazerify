@@ -8,6 +8,9 @@
 :root {
   --baseImg: 'images/black-cat.jpg';
   --size: 50px;
+  --lazerThickness: 10px;
+  --lazerLength: 400px;
+  --lazerColor: #ff00ff;
 }
 
 #image {
@@ -19,17 +22,19 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+  margin-top:100px;
+  margin-left: 100px;
 }
 
 .lazer {
   display: inline-block;
-  background-color: lighten(magenta, 32%);
-  height: 10px;
-  width: 400px;
+  background-color: var(--lazerColor); /*lighten(var(--lazerColor), 32%) */
+  height: var(--lazerThickness);
+  width: var(--lazerLength);
   position: absolute;
   transform-origin: 0 50%;
   border-radius: 100%;
-  box-shadow: 0 0 8px 4px lighten(magenta, 25%), 0 0 12px 11px magenta;
+  box-shadow: 0 0 8px 4px var(--lazerColor), 0 0 12px 11px var(--lazerColor); /*0 0 8px 4px lighten(var(--lazerColor), 25%) */
   opacity: 0.8;
 
   &.one {
@@ -49,4 +54,13 @@
 #lazer-props {
   display: inline-block;
   vertical-align: top;
+}
+
+.target {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 2px solid red;
+  border-radius: 100%;
+  position: absolute;
 }

@@ -75,16 +75,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 $(function() {
 
-  const imageDiv = $("#image");
-
-
   const style = getComputedStyle(document.body);
   let imgPath = style.getPropertyValue('--baseImg').replace("/'/", "");
 
-  console.log(imgPath);
+  const imageDiv = $("#image");
+  const confirmEyesBtn = $("#confirm-eyes");
+  const removeEyesBtn = $("#remove-eyes");
+
+  let startingPoints = $(".target");
 
   $(imageDiv).css("backgroundImage", `url(${eval(imgPath)})`); // later, i'll think about how to get rid of eval
-  console.log(imageDiv);
+
+  $(imageDiv).on("click", () => {
+    startingPoints = $(".target");
+    if (startingPoints.length < 2 ) {
+      const layerX = event.layerX-15;
+      const layerY = event.layerY-15;
+      const startingPoint = $(`<div class="target" style="top:${layerY}px; left: ${layerX}px"></div>`); // maybe some unique id will be needed in future
+      $(event.target).append(startingPoint);
+    }
+  });
+
+  $(removeEyesBtn).on("click", () => {
+    $(imageDiv).find(".target").remove();
+  });
 
   // function handleUpdate() {
   //   const suffix = this.dataset.sizing || '';
@@ -134,7 +148,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n:root {\n  --baseImg: 'images/black-cat.jpg';\n  --size: 50px; }\n\n#image {\n  font-size: var(--size);\n  display: inline-block;\n  border: 2px solid blue;\n  height: 600px;\n  width: 800px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  position: relative; }\n\n.lazer {\n  display: inline-block;\n  background-color: #ffa3ff;\n  height: 10px;\n  width: 400px;\n  position: absolute;\n  transform-origin: 0 50%;\n  border-radius: 100%;\n  box-shadow: 0 0 8px 4px #ff80ff, 0 0 12px 11px magenta;\n  opacity: 0.8; }\n  .lazer.one {\n    top: 180px;\n    left: 520px;\n    transform: rotate(125deg); }\n  .lazer.two {\n    top: 180px;\n    left: 450px;\n    transform: rotate(120deg); }\n\n#lazer-props {\n  display: inline-block;\n  vertical-align: top; }\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0; }\n\n:root {\n  --baseImg: 'images/black-cat.jpg';\n  --size: 50px;\n  --lazerThickness: 10px;\n  --lazerLength: 400px;\n  --lazerColor: #ff00ff; }\n\n#image {\n  font-size: var(--size);\n  display: inline-block;\n  border: 2px solid blue;\n  height: 600px;\n  width: 800px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  position: relative;\n  margin-top: 100px;\n  margin-left: 100px; }\n\n.lazer {\n  display: inline-block;\n  background-color: var(--lazerColor);\n  /*lighten(var(--lazerColor), 32%) */\n  height: var(--lazerThickness);\n  width: var(--lazerLength);\n  position: absolute;\n  transform-origin: 0 50%;\n  border-radius: 100%;\n  box-shadow: 0 0 8px 4px var(--lazerColor), 0 0 12px 11px var(--lazerColor);\n  /*0 0 8px 4px lighten(var(--lazerColor), 25%) */\n  opacity: 0.8; }\n  .lazer.one {\n    top: 180px;\n    left: 520px;\n    transform: rotate(125deg); }\n  .lazer.two {\n    top: 180px;\n    left: 450px;\n    transform: rotate(120deg); }\n\n#lazer-props {\n  display: inline-block;\n  vertical-align: top; }\n\n.target {\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  border: 2px solid red;\n  border-radius: 100%;\n  position: absolute; }\n", ""]);
 
 // exports
 
