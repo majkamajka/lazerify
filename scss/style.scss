@@ -2,6 +2,10 @@
   padding: 0;
   margin: 0;
   //border: 2px dotted magenta;
+  background-color: DimGray;
+  color: white;
+  font-size: 24px;
+  line-height: 40px;
 }
 
 // variables:
@@ -22,8 +26,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
-  margin-top:100px;
-  margin-left: 100px;
+  margin-top:20px;
+  margin-left: 20px;
 }
 
 .lazer {
@@ -57,10 +61,28 @@
 }
 
 .target {
+  font-size: 60px;
   display: inline-block;
   height: 20px;
   width: 20px;
   border: 2px solid red;
   border-radius: 100%;
   position: absolute;
+  background-color: transparent;
+  &::before {
+    position: absolute;
+    font-size: 60px;
+    color: red;
+    content: "+";
+    display: block;
+    top: -10px;
+    left: -7px;
+  }
+
+}
+
+.warning {
+  display: block;
+  height: 50px;
+  color: red;
 }
