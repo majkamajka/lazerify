@@ -12,6 +12,8 @@ $(function() {
   const removeEyesBtn = $("#remove-eyes");
   let warningMsg = $(".warning");
   let startingPoints = $(".target");
+  const lazerOne = $(".lazer.one");
+  const lazerTwo = $(".lazer.two");
 
   const inputs = document.querySelectorAll("#lazer-props input");
 
@@ -22,11 +24,23 @@ $(function() {
 
   $(imageDiv).on("click", () => {
     startingPoints = $(".target");
-    if (startingPoints.length < 2 ) {
-      const layerX = event.layerX-15;
-      const layerY = event.layerY-15;
-      const startingPoint = $(`<div class="target" style="top:${layerY}px; left: ${layerX}px"></div>`); // maybe some unique id will be needed in future
+
+    if (startingPoints.length === 0) {
+      const layerX1 = event.layerX-15;
+      const layerY1 = event.layerY-15;
+      document.documentElement.style.setProperty("--lazerOneX", `${layerX1+2}px`);
+      document.documentElement.style.setProperty("--lazerOneY", `${layerY1+20}px`);
+      const startingPoint = $(`<div class="target" style="top:${layerY1}px; left: ${layerX1}px"></div>`); // maybe some unique id will be needed in future
       $(event.target).append(startingPoint);
+
+    } else if (startingPoints.length === 1) {
+      const layerX2 = event.layerX-15;
+      const layerY2 = event.layerY-15;
+      document.documentElement.style.setProperty("--lazerTwoX", `${layerX2+2}px`);
+      document.documentElement.style.setProperty("--lazerTwoY", `${layerY2+20}px`);
+      const startingPoint = $(`<div class="target" style="top:${layerY2}px; left: ${layerX2}px"></div>`); // maybe some unique id will be needed in future
+      $(event.target).append(startingPoint);
+
     } else if (startingPoints.length === 2 ) {
       $(warningMsg).text("you can only add two starting points. remove them, if you want to chane positions");
     }
@@ -37,12 +51,20 @@ $(function() {
     $(warningMsg).text("");
   });
 
+  $(confirmEyesBtn).on("click", () => {
+    $(lazerOne).css("display", "inline-block");
+    $(lazerTwo).css("display", "inline-block");
+    $(imageDiv).find(".target").remove();
+  });
+
 
   function handleUpdate() {
+    const prefix = this.dataset.prefix || '';
     const suffix = this.dataset.sizing || '';
-    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    document.documentElement.style.setProperty(`--${this.name}`, prefix + this.value + suffix);
   };
 
-  inputs.forEach(input => input.addEventListener('change', handleUpdate));
+  $(inputs).on("mousemove", handleUpdate);
+
 
 });

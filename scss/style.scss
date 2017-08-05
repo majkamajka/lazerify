@@ -15,6 +15,12 @@
   --lazerThickness: 10px;
   --lazerLength: 400px;
   --lazerColor: #ff00ff;
+  --lazerOneX: 440px;
+  --lazerOneY: 180px;
+  --lazerOneRotate: rotate(120deg);
+  --lazerTwoX: 520px;
+  --lazerTwoY: 180px;
+  --lazerTwoRotate: rotate(125deg);
 }
 
 #image {
@@ -31,26 +37,26 @@
 }
 
 .lazer {
-  display: inline-block;
+  display: none;
   background-color: var(--lazerColor); /*lighten(var(--lazerColor), 32%) */
   height: var(--lazerThickness);
   width: var(--lazerLength);
   position: absolute;
-  transform-origin: 0 50%;
-  border-radius: 100%;
+  transform-origin: 0 0;
+  border-radius: 0 100%;
   box-shadow: 0 0 8px 4px var(--lazerColor), 0 0 12px 11px var(--lazerColor); /*0 0 8px 4px lighten(var(--lazerColor), 25%) */
   opacity: 0.8;
 
   &.one {
-    top: 180px;
-    left: 520px;
-    transform: rotate(125deg);
+    left: var(--lazerOneX);
+    top: var(--lazerOneY);
+    transform: var(--lazerOneRotate);
   }
 
   &.two {
-    top: 180px;
-    left: 450px;
-    transform: rotate(120deg);
+    left: var(--lazerTwoX);
+    top: var(--lazerTwoY);
+    transform: var(--lazerTwoRotate);
   }
 }
 

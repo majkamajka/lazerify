@@ -20,10 +20,16 @@
       <p>select target</p>
 
       <label for="color">color:</label>
-      <input id="color" type="color" name="lazerColor" min="1" max="200" value="#ff00ff"><br/>
+      <input id="color" type="color" name="lazerColor" value="#ff00ff"><br/>
+
+      <label for="rotate1">rotate1:</label>
+      <input id="rotate1" type="range" name="lazerOneRotate" min="0" max="360" value="120" data-prefix="rotate(" data-sizing="deg)" >
+
+      <label for="rotate2">rotate2:</label>
+      <input id="rotate2" type="range" name="lazerTwoRotate" min="0" max="360" value="125" data-prefix="rotate(" data-sizing="deg)" ><br/>
 
       <label for="thickness">thickness:</label>
-      <input id="thickness" type="range" name="lazerThickness" min="1" max="200" value="10" data-sizing="px">
+      <input id="thickness" type="range" name="lazerThickness" min="1" max="20" value="10" data-sizing="px">
 
 
 

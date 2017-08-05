@@ -85,6 +85,8 @@ $(function() {
   const removeEyesBtn = $("#remove-eyes");
   let warningMsg = $(".warning");
   let startingPoints = $(".target");
+  const lazerOne = $(".lazer.one");
+  const lazerTwo = $(".lazer.two");
 
   const inputs = document.querySelectorAll("#lazer-props input");
 
@@ -95,11 +97,23 @@ $(function() {
 
   $(imageDiv).on("click", () => {
     startingPoints = $(".target");
-    if (startingPoints.length < 2 ) {
-      const layerX = event.layerX-15;
-      const layerY = event.layerY-15;
-      const startingPoint = $(`<div class="target" style="top:${layerY}px; left: ${layerX}px"></div>`); // maybe some unique id will be needed in future
+
+    if (startingPoints.length === 0) {
+      const layerX1 = event.layerX-15;
+      const layerY1 = event.layerY-15;
+      document.documentElement.style.setProperty("--lazerOneX", `${layerX1+2}px`);
+      document.documentElement.style.setProperty("--lazerOneY", `${layerY1+20}px`);
+      const startingPoint = $(`<div class="target" style="top:${layerY1}px; left: ${layerX1}px"></div>`); // maybe some unique id will be needed in future
       $(event.target).append(startingPoint);
+
+    } else if (startingPoints.length === 1) {
+      const layerX2 = event.layerX-15;
+      const layerY2 = event.layerY-15;
+      document.documentElement.style.setProperty("--lazerTwoX", `${layerX2+2}px`);
+      document.documentElement.style.setProperty("--lazerTwoY", `${layerY2+20}px`);
+      const startingPoint = $(`<div class="target" style="top:${layerY2}px; left: ${layerX2}px"></div>`); // maybe some unique id will be needed in future
+      $(event.target).append(startingPoint);
+
     } else if (startingPoints.length === 2 ) {
       $(warningMsg).text("you can only add two starting points. remove them, if you want to chane positions");
     }
@@ -110,13 +124,21 @@ $(function() {
     $(warningMsg).text("");
   });
 
+  $(confirmEyesBtn).on("click", () => {
+    $(lazerOne).css("display", "inline-block");
+    $(lazerTwo).css("display", "inline-block");
+    $(imageDiv).find(".target").remove();
+  });
+
 
   function handleUpdate() {
+    const prefix = this.dataset.prefix || '';
     const suffix = this.dataset.sizing || '';
-    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    document.documentElement.style.setProperty(`--${this.name}`, prefix + this.value + suffix);
   };
 
-  inputs.forEach(input => input.addEventListener('change', handleUpdate));
+  $(inputs).on("mousemove", handleUpdate);
+
 
 });
 
@@ -161,7 +183,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n  background-color: DimGray;\n  color: white;\n  font-size: 24px;\n  line-height: 40px; }\n\n:root {\n  --baseImg: 'images/black-cat.jpg';\n  --size: 50px;\n  --lazerThickness: 10px;\n  --lazerLength: 400px;\n  --lazerColor: #ff00ff; }\n\n#image {\n  font-size: var(--size);\n  display: inline-block;\n  border: 2px solid blue;\n  height: 600px;\n  width: 800px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  position: relative;\n  margin-top: 20px;\n  margin-left: 20px; }\n\n.lazer {\n  display: inline-block;\n  background-color: var(--lazerColor);\n  /*lighten(var(--lazerColor), 32%) */\n  height: var(--lazerThickness);\n  width: var(--lazerLength);\n  position: absolute;\n  transform-origin: 0 50%;\n  border-radius: 100%;\n  box-shadow: 0 0 8px 4px var(--lazerColor), 0 0 12px 11px var(--lazerColor);\n  /*0 0 8px 4px lighten(var(--lazerColor), 25%) */\n  opacity: 0.8; }\n  .lazer.one {\n    top: 180px;\n    left: 520px;\n    transform: rotate(125deg); }\n  .lazer.two {\n    top: 180px;\n    left: 450px;\n    transform: rotate(120deg); }\n\n#lazer-props {\n  display: inline-block;\n  vertical-align: top; }\n\n.target {\n  font-size: 60px;\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  border: 2px solid red;\n  border-radius: 100%;\n  position: absolute;\n  background-color: transparent; }\n  .target::before {\n    position: absolute;\n    font-size: 60px;\n    color: red;\n    content: \"+\";\n    display: block;\n    top: -10px;\n    left: -7px; }\n\n.warning {\n  display: block;\n  height: 50px;\n  color: red; }\n", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n  background-color: DimGray;\n  color: white;\n  font-size: 24px;\n  line-height: 40px; }\n\n:root {\n  --baseImg: 'images/black-cat.jpg';\n  --size: 50px;\n  --lazerThickness: 10px;\n  --lazerLength: 400px;\n  --lazerColor: #ff00ff;\n  --lazerOneX: 440px;\n  --lazerOneY: 180px;\n  --lazerOneRotate: rotate(120deg);\n  --lazerTwoX: 520px;\n  --lazerTwoY: 180px;\n  --lazerTwoRotate: rotate(125deg); }\n\n#image {\n  font-size: var(--size);\n  display: inline-block;\n  border: 2px solid blue;\n  height: 600px;\n  width: 800px;\n  background-repeat: no-repeat;\n  background-size: contain;\n  position: relative;\n  margin-top: 20px;\n  margin-left: 20px; }\n\n.lazer {\n  display: none;\n  background-color: var(--lazerColor);\n  /*lighten(var(--lazerColor), 32%) */\n  height: var(--lazerThickness);\n  width: var(--lazerLength);\n  position: absolute;\n  transform-origin: 0 0;\n  border-radius: 0 100%;\n  box-shadow: 0 0 8px 4px var(--lazerColor), 0 0 12px 11px var(--lazerColor);\n  /*0 0 8px 4px lighten(var(--lazerColor), 25%) */\n  opacity: 0.8; }\n  .lazer.one {\n    left: var(--lazerOneX);\n    top: var(--lazerOneY);\n    transform: var(--lazerOneRotate); }\n  .lazer.two {\n    left: var(--lazerTwoX);\n    top: var(--lazerTwoY);\n    transform: var(--lazerTwoRotate); }\n\n#lazer-props {\n  display: inline-block;\n  vertical-align: top; }\n\n.target {\n  font-size: 60px;\n  display: inline-block;\n  height: 20px;\n  width: 20px;\n  border: 2px solid red;\n  border-radius: 100%;\n  position: absolute;\n  background-color: transparent; }\n  .target::before {\n    position: absolute;\n    font-size: 60px;\n    color: red;\n    content: \"+\";\n    display: block;\n    top: -10px;\n    left: -7px; }\n\n.warning {\n  display: block;\n  height: 50px;\n  color: red; }\n", ""]);
 
 // exports
 
