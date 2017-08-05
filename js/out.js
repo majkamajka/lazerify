@@ -143,6 +143,32 @@ $(function() {
 });
 
 
+
+
+
+// switch (startingPoints.length) {
+//   case 0:
+//     const layerX1 = event.layerX-15;
+//     const layerY1 = event.layerY-15;
+//     document.documentElement.style.setProperty("--lazerOneX", `${layerX1+2}px`);
+//     document.documentElement.style.setProperty("--lazerOneY", `${layerY1+20}px`);
+//     const startingPoint = $(`<div class="target" style="top:${layerY1}px; left: ${layerX1}px"></div>`); // maybe some unique id will be needed in future
+//     $(event.target).append(startingPoint);
+//     break;
+//
+//   case 1:
+//     const layerX2 = event.layerX-15;
+//     const layerY2 = event.layerY-15;
+//     document.documentElement.style.setProperty("--lazerTwoX", `${layerX2+2}px`);
+//     document.documentElement.style.setProperty("--lazerTwoY", `${layerY2+20}px`);
+//     const startingPoint = $(`<div class="target" style="top:${layerY2}px; left: ${layerX2}px"></div>`); // maybe some unique id will be needed in future
+//     $(event.target).append(startingPoint);
+//
+//   case 2:
+//     $(warningMsg).text("you can only add two starting points. remove them, if you want to chane positions");
+// }
+
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
