@@ -12,23 +12,25 @@
 
     <div id="lazer-props">
 
-      <p>select starting points (probably eyes!)</p>
+      <p>1. select starting points (probably eyes!)</p>
       <button id="confirm-eyes" type="submit" value="confirm">confirm</button>
       <button id="remove-eyes" type="submit" value="confirm">remove</button>
       <p class="warning"></p>
 
-      <p>select target</p>
+      <p>2. select target</p>
+      <button id="confirm-target" type="submit" value="confirm">confirm</button>
+      <button id="remove-target" type="submit" value="confirm">remove</button><br/>
 
-      <label for="color">color:</label>
+      <label for="color">3. color:</label>
       <input id="color" type="color" name="lazerColor" value="#ff00ff"><br/>
 
-      <label for="rotate1">rotate1:</label>
+      <label for="rotate1">4a. rotate1:</label>
       <input id="rotate1" type="range" name="lazerOneRotate" min="0" max="360" value="120" data-prefix="rotate(" data-sizing="deg)" >
 
-      <label for="rotate2">rotate2:</label>
+      <label for="rotate2">4b. rotate2:</label>
       <input id="rotate2" type="range" name="lazerTwoRotate" min="0" max="360" value="125" data-prefix="rotate(" data-sizing="deg)" ><br/>
 
-      <label for="thickness">thickness:</label>
+      <label for="thickness">5. thickness:</label>
       <input id="thickness" type="range" name="lazerThickness" min="1" max="20" value="10" data-sizing="px">
 
 
