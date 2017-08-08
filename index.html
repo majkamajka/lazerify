@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>lazerify</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin-ext" rel="stylesheet">
   </head>
   <body>
     <div id="image">
@@ -12,29 +13,30 @@
 
     <div id="lazer-props">
 
-      <p>1. select starting points (probably eyes!)</p>
-      <button id="start-eyes" type="submit" value="start">start</button>
-      <button id="remove-eyes" type="submit" value="remove">remove</button>
-      <button id="confirm-eyes" type="submit" value="confirm">confirm</button>
+      <p>1. Select starting points (probably eyes)</p>
+      <button id="start-eyes" type="submit" value="start">START</button>
+      <button id="remove-eyes" type="submit" value="remove">REMOVE</button>
+      <button id="confirm-eyes" type="submit" value="confirm">CONFIRM</button>
 
       <p class="warning"></p>
 
-      <p>2. select target</p>
-      <button id="start-target" type="submit" value="start">start</button>
-      <button id="remove-target" type="submit" value="remove">remove</button>
-      <button id="confirm-target" type="submit" value="confirm">confirm</button>
-      <br/>
+      <p>2. Select target</p>
+      <button id="start-target" type="submit" value="start">START</button>
+      <button id="remove-target" type="submit" value="remove">REMOVE</button>
+      <button id="confirm-target" type="submit" value="confirm">CONFIRM</button>
 
-      <label for="color">3. color:</label>
+      <p class="warning"></p>
+
+      <label for="color">3. Color:</label>
       <input id="color" type="color" name="lazerColor" value="#ff00ff"><br/>
 
       <label for="rotate1">4a. rotate1:</label>
-      <input id="rotate1" type="range" name="lazerOneRotate" min="0" max="360" value="120" data-prefix="rotate(" data-sizing="deg)" >
+      <input id="rotate1" type="range" name="lazerOneRotate" min="0" max="360" value="120" data-prefix="rotate(" data-sizing="deg)">
 
       <label for="rotate2">4b. rotate2:</label>
       <input id="rotate2" type="range" name="lazerTwoRotate" min="0" max="360" value="125" data-prefix="rotate(" data-sizing="deg)" ><br/>
 
-      <label for="thickness">5. thickness:</label>
+      <label for="thickness">5. Thickness:</label>
       <input id="thickness" type="range" name="lazerThickness" min="1" max="20" value="10" data-sizing="px">
 
 
